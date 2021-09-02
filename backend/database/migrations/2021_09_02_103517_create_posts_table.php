@@ -18,9 +18,9 @@ class CreatePostsTable extends Migration
             $table->string('title');
             $table->string('content');
             $table->string('image')->nullable();
-            $table->foreignId('user_id')
+            $table->foreignID('user_id')  //Users의 user_id를 참조한다
                 ->constrained()
-                ->onDelete('cascade');
+                ->onDelete('cascade');  //같이 삭제 요청
             $table->timestamps();
         });
     }
