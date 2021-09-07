@@ -43,4 +43,20 @@ class PostController extends Controller
         $post = Post::find($id);
         return $post;
     }
+
+    public function update(Request $request, $id)
+    {
+        $request->validate([  //빈칸일 경우 제출되지 않도록 막아줌
+            'title' => 'required|min:3',  //최소 3글자 이상
+            'content' => 'required',
+            'imageFile' => 'image|max:2000'
+        ]);
+
+        $post = Post::find($id);
+
+        $post->title = $request->title;
+        $post->content = $request->content;
+
+        $post->save();
+    }
 }
