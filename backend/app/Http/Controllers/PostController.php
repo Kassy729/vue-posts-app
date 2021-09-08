@@ -59,4 +59,10 @@ class PostController extends Controller
 
         $post->save();
     }
+
+    public function destroy($id)
+    {
+        $post = Post::findOrFail($id);
+        $post->delete();
+    }
 }

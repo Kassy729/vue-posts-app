@@ -26,3 +26,5 @@ Route::get('/index', [PostController::class, 'index']);
 Route::get('/show/{id}', [PostController::class, 'show']);
 
 Route::patch('/update/{id}', [PostController::class, 'update']);
+
+Route::delete('/{id}', [PostController::class, 'destroy']);
