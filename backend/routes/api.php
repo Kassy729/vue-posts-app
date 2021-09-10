@@ -28,3 +28,5 @@ Route::get('/show/{id}', [PostController::class, 'show']);
 Route::patch('/update/{id}', [PostController::class, 'update']);
 
 Route::delete('/{id}', [PostController::class, 'destroy']);
+
+Route::post('comment/{id}', [PostController::class, 'comment']);
