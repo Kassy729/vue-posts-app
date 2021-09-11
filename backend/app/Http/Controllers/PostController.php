@@ -43,8 +43,11 @@ class PostController extends Controller
     public function show($id)
     {
         $post = Post::find($id);
+        $comment = Comment::where('post_id', $id)->get();
 
-        return $post;
+        return [
+            $post, $comment
+        ];
     }
 
     public function update(Request $request, $id)
