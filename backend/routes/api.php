@@ -30,3 +30,5 @@ Route::patch('/update/{id}', [PostController::class, 'update']);
 Route::delete('/{id}', [PostController::class, 'destroy']);
 
 Route::post('comment/{id}', [PostController::class, 'comment']);
+
+Route::delete('/comment_delete/{id}', [PostController::class, 'comment_destroy']);

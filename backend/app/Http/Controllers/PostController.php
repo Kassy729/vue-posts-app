@@ -84,4 +84,10 @@ class PostController extends Controller
         $comment->save();
         return $comment->all();
     }
+
+    public function comment_destroy($id)
+    {
+        $comment = Comment::find($id);
+        $comment->delete();
+    }
 }
