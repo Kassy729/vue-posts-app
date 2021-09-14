@@ -7,6 +7,7 @@ use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class PostController extends Controller
 {
@@ -14,20 +15,25 @@ class PostController extends Controller
     {
         $title = $request->title;
         $content = $request->content;
+        $image = $request->image;
+
+
+        $name = $image->getClientOriginalName();
+        $extension = $image->extension();
+        $extensionout = Str::of($name)->basename('.' . $extension);
+        $fileName = $extensionout . '_' . time() . '.' . $extension;
+
+        $image->storeAs('public/image', $fileName);
 
         $post = new Post();
-
         $post->title = $title;
         $post->content = $content;
-
-        // $post->user_id = Auth::user()->id;
-
-        // return Auth::user()->id;
-
         $post->user_id = 1;
+        // // $post->user_id = Auth::user()->id;
+        // // return Auth::user()->id;
+        $post->image = $fileName;
 
 
-        // return $request;
         $post->save();
     }
 
@@ -89,5 +95,14 @@ class PostController extends Controller
     {
         $comment = Comment::find($id);
         $comment->delete();
+    }
+
+
+    protected function uploadPostImage($request)
+    {
+        $fileName = $request->file('image')->getClientOriginalName() . '_' . time();
+        $request->file('image')->storeAs('public/images', $fileName);
+
+        return $fileName;
     }
 }
