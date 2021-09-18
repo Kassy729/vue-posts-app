@@ -11,6 +11,8 @@ vuejs에서 파일 업로드
       form.append("title", this.title);
       form.append("content", this.content);
       form.append("image", this.image);
+
+2021 9/18
       
 
 
